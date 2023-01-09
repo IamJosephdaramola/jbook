@@ -10,7 +10,6 @@ export const serve = (
 	useProxy: boolean
 ) => {
 	const app = express();
-
 	app.use(createCellsRouter(filename, dir));
 
 	if (useProxy) {
