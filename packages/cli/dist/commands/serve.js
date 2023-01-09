@@ -15,15 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.serveCommand = void 0;
 const path_1 = __importDefault(require("path"));
 const commander_1 = require("commander");
-const local_api_1 = require("local-api");
-const isProduction = process.env.NODE_ENV === "production";
+const local_api_1 = require("@js-memo/local-api");
+const isProduction = process.env.NODE_ENV === 'production';
 exports.serveCommand = new commander_1.Command()
-    .command("serve [filename]")
-    .description("Open a file for editing")
-    .option("-p, --port <number>", "port to run server on", "4005")
+    .command('serve [filename]')
+    .description('Open a file for editing')
+    .option('-p, --port <number>', 'port to run server on', '4005')
     .action((filename = 'notebook.js', options) => __awaiter(void 0, void 0, void 0, function* () {
     const isLocalApiError = (err) => {
-        return typeof err.code === "string";
+        return typeof err.code === 'string';
     };
     try {
         const dir = path_1.default.join(process.cwd(), path_1.default.dirname(filename));
@@ -32,8 +32,8 @@ exports.serveCommand = new commander_1.Command()
     }
     catch (error) {
         if (isLocalApiError(error)) {
-            if (error.code === "EADDRINUSE") {
-                console.error("Port is in use. Try running on a different port.");
+            if (error.code === 'EADDRINUSE') {
+                console.error('Port is in use. Try running on a different port.');
             }
         }
         else if (error instanceof Error) {
